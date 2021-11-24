@@ -12,10 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.lsj.bootstrap.comm.main.Buttons;
+import co.lsj.bootstrap.comm.main.Charts;
 import co.lsj.bootstrap.main.Login;
 import co.lsj.bootstrap.main.MainCommand;
 import co.lsj.bootstrap.member.command.LoginCheck;
 import co.lsj.bootstrap.member.command.Logout;
+import co.lsj.bootstrap.member.command.MemberIdCheck;
+import co.lsj.bootstrap.member.command.MemberJoin;
+import co.lsj.bootstrap.member.command.MemberJoinForm;
 import co.lsj.bootstrap.notice.command.NoticeList;
 
 /**
@@ -38,6 +42,10 @@ public class FrontController extends HttpServlet {
 		map.put("/login.do", new Login()); //로그인 폼 호출
 		map.put("/loginCheck.do", new LoginCheck()); //로그인 처리
 		map.put("/logout.do", new Logout()); //로그아웃 처리
+		map.put("/charts.do", new Charts()); //차트
+		map.put("/memberJoin.do", new MemberJoin()); //회원가입
+		map.put("/ajaxIdCheck.do", new MemberIdCheck()); //아이디 중복 체크
+		map.put("/memberJoinForm.do", new MemberJoinForm());
 	}
 
 	
@@ -52,7 +60,9 @@ public class FrontController extends HttpServlet {
 		
 		if(!viewPage.endsWith(".do")) { // .do 아닐때
 			if(viewPage.startsWith("ajax:")) {
-				//ajax 처리 루틴
+				response.setContentType("text/html;charset=UTF-8");
+				response.getWriter().append(viewPage.substring(5));
+				
 				return;
 			}
 			if(viewPage.endsWith(".jsp")) {

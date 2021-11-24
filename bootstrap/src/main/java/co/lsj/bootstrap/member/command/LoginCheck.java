@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import co.lsj.bootstrap.comm.Command;
 import co.lsj.bootstrap.member.service.MemberService;
 import co.lsj.bootstrap.member.service.MemberVO;
-import co.lsj.prj.member.serviceImpl.MemberServiceImpl;
+import co.lsj.bootstrap.member.serviceImpl.MemberServiceImpl;
 
 public class LoginCheck implements Command {
 
